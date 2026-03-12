@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cover Art Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header">
+  <div class="header-top">
+    <span class="logo">Cover Art Archive<span>.gallery</span></span>
+    <div class="header-stats" id="stats-bar"></div>
+    <div class="header-toggles">
+      <div class="view-btns">
+        <button class="view-btn active" id="btn-grid" onclick="setLayout('grid')" title="Grid">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <rect x="0" y="0" width="5" height="5"/><rect x="7" y="0" width="5" height="5"/>
+            <rect x="0" y="7" width="5" height="5"/><rect x="7" y="7" width="5" height="5"/>
+          </svg>
+        </button>
+        <button class="view-btn" id="btn-list" onclick="setLayout('list')" title="List">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <rect x="0" y="0" width="12" height="2"/><rect x="0" y="5" width="12" height="2"/>
+            <rect x="0" y="10" width="12" height="2"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <input type="search" id="search" placeholder="Search title, artist…" autocomplete="off" spellcheck="false" />
+    </div>
+    <select id="sort-select" onchange="applyFilters()">
+      <option value="artist-asc">Artist A–Z</option>
+      <option value="artist-desc">Artist Z–A</option>
+      <option value="title-asc">Title A–Z</option>
+      <option value="title-desc">Title Z–A</option>
+    </select>
+    <div class="service-filters" id="service-filters"></div>
+    <div class="track-filter-wrap">
+      <button class="class-btn" id="btn-track-only" onclick="toggleTrackFilter()">Track covers</button>
+    </div>
+  </div>
+
+  <div class="artist-bar" id="artist-bar"></div>
+</div>
+
+<!-- LOADING -->
+<div id="loading">
+  <div class="loader-bar"><div class="loader-fill" id="loader-fill"></div></div>
+  <div class="loader-text" id="loader-text">Loading…</div>
+</div>
+
+<!-- CONTENT -->
+<div id="content" style="display:none"></div>
+<div id="empty">No covers match the current filters.</div>
+<div id="load-more-wrap" style="display:none">
+  <button class="load-more-btn" onclick="loadMore()">Load more</button>
+</div>
+
+<!-- FOOTER -->
+<div id="footer">
+  Cover Art Archive &nbsp;·&nbsp;
+  Images hosted on <a href="https://jpg6.su" target="_blank" rel="noopener">jpg6.su</a>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" hidden>
+  <button class="lb-arrow" id="lb-prev" aria-label="Previous">&#8249;</button>
+  <button class="lb-close" id="lb-close" aria-label="Close">&#x2715;</button>
+  <img id="lb-img" src="" alt="" />
+  <div class="lb-meta">
+    <div class="lb-title" id="lb-title"></div>
+    <div class="lb-artist" id="lb-artist"></div>
+    <a class="lb-source" id="lb-source" href="#" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+  <button class="lb-arrow" id="lb-next" aria-label="Next">&#8250;</button>
+</div>
+
+
+<script src="gallery.js"></script>
+</body>
+</html>
